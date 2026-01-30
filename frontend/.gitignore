@@ -1,0 +1,15 @@
+.DS_Store
+/node_modules/
+
+# React Router
+/.react-router/
+/build/
+
+/opencodetmp
+/dist
+.env
+
+yarn.lock
+pnpm-lock.yaml
+pnpm-workspace.yaml
+bun.lock
