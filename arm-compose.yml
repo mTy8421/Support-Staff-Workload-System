@@ -50,12 +50,12 @@ services:
       - app-network
 
   db:
-    image: mariadb:10.11
+    image: mysql:8.0
     container_name: db
     restart: unless-stopped
     environment:
-      - MARIADB_ROOT_PASSWORD=root
-      - MARIADB_DATABASE=project
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=project
     volumes:
       - dbdata:/var/lib/mysql
       - ./user.sql:/docker-entrypoint-initdb.d/user.sql
@@ -64,13 +64,13 @@ services:
     networks:
       - app-network
     healthcheck:
-      test: ["CMD-SHELL", "mariadb-admin ping -h localhost -u root -proot || exit 1"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
       interval: 5s
       timeout: 5s
       retries: 20
 
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin
+    image: arm64v8/phpmyadmin
     container_name: phpmyadmin
     restart: unless-stopped
     environment:

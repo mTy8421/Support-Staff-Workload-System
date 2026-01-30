@@ -2,6 +2,14 @@
 
 Project สำหรับการศึกษา เป็นเว็บแอปพลิเคชัน Full Stack ที่พัฒนาโดยนักศึกษามหาวิทยาลัยพะเยา
 
+## ตัวอย่างระบบ (Preview)
+
+![login](/frontend/src/assets/Login.png)
+*Login Page*
+
+![adminDetail](/frontend/src/assets/AdminDetail.png)
+*Admin Detail View*
+
 ## Tech Stack
 
 **Frontend:**

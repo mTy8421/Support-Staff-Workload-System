@@ -13,7 +13,7 @@ export default defineConfig({
     },
     host: true,
     port: 5173,
-    allowedHosts: ["acid-ever-blowing-hung.trycloudflare.com"],
+    // allowedHosts: [""],
   },
   css: {
     postcss: "./postcss.config.cjs",
