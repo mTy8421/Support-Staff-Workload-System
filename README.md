@@ -7,7 +7,7 @@ Project สำหรับการศึกษา เป็นเว็บแ�
 ![login](/frontend/src/assets/Login.png)
 *Login Page*
 
-![adminDetail](/frontend/src/assets/AdminDetail.png)
+![adminDetail](/frontend/src/assets/adminDetail.png)
 *Admin Detail View*
 
 ## Tech Stack
