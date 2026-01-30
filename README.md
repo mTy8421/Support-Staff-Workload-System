@@ -1,4 +1,4 @@
-# ICT-Project
+# Support-Staff-Workload-System
 
 Project สำหรับการศึกษา เป็นเว็บแอปพลิเคชัน Full Stack ที่พัฒนาด้วยเทคโนโลยีสมัยใหม่
 
