@@ -1,6 +1,6 @@
 # Support-Staff-Workload-System
 
-Project สำหรับการศึกษา เป็นเว็บแอปพลิเคชัน Full Stack ที่พัฒนาด้วยเทคโนโลยีสมัยใหม่
+Project สำหรับการศึกษา เป็นเว็บแอปพลิเคชัน Full Stack ที่พัฒนาโดยนักศึกษามหาวิทยาลัยพะเยา
 
 ## Tech Stack
 
