@@ -1,7 +1,7 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
 import axiosInstance from "../../utils/axios";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, type NavigateFunction } from "react-router-dom";
 import "./css/style.css";
 import { message } from "antd";
 
@@ -14,6 +14,49 @@ type Input = {
 export const logout = () => {
   localStorage.removeItem("token");
   window.location.href = "/";
+};
+
+const handleRoleRedirect = (userRole: string, navigate: NavigateFunction) => {
+  switch (userRole) {
+    case "admin":
+      navigate("/admin");
+      break;
+    case "คณบดี":
+      navigate("/dean");
+      break;
+    case "คณบดีฝ่ายบริหารทั่วไป":
+      navigate("/dean/generaladministration");
+      break;
+    case "คณบดีฝ่ายแผนงาน":
+      navigate("/dean/plan");
+      break;
+    case "คณบดีฝ่ายพัฒนาทักษะดิจิทัล":
+      navigate("/dean/developdigitalskills");
+      break;
+    case "คณบดีฝ่ายวิชาการ":
+      navigate("/dean/academic");
+      break;
+    case "หัวหน้าสำนักงาน":
+      navigate("/head");
+      break;
+    case "หัวหน้างานฝ่ายบริหารทั่วไป":
+      navigate("/head");
+      break;
+    case "หัวหน้างานฝ่ายวิชาการ":
+      navigate("/head");
+      break;
+    case "หัวหน้างานฝ่ายแผนงาน":
+      navigate("/head");
+      break;
+    case "หัวหน้างานฝ่ายพัฒนาทักษะดิจิทัล":
+      navigate("/head");
+      break;
+    case "พนักงาน":
+      navigate("/user");
+      break;
+    default:
+      navigate("/user");
+  }
 };
 
 export default function Home() {
@@ -29,47 +72,7 @@ export default function Home() {
         .get("/user/profile")
         .then((response) => {
           const userRole = response.data.user_role;
-          // Redirect based on role
-          switch (userRole) {
-            case "admin":
-              navigate("/admin");
-              break;
-            case "คณบดี":
-              navigate("/dean");
-              break;
-            case "คณบดีฝ่ายบริหารทั่วไป":
-              navigate("/dean/generaladministration");
-              break;
-            case "คณบดีฝ่ายแผนงาน":
-              navigate("/dean/plan");
-              break;
-            case "คณบดีฝ่ายพัฒนาทักษะดิจิทัล":
-              navigate("/dean/developdigitalskills");
-              break;
-            case "คณบดีฝ่ายวิชาการ":
-              navigate("/dean/academic");
-              break;
-            case "หัวหน้าสำนักงาน":
-              navigate("/head");
-              break;
-            case "หัวหน้างานฝ่ายบริหารทั่วไป":
-              navigate("/head");
-              break;
-            case "หัวหน้างานฝ่ายวิชาการ":
-              navigate("/head");
-              break;
-            case "หัวหน้างานฝ่ายแผนงาน":
-              navigate("/head");
-              break;
-            case "หัวหน้างานฝ่ายพัฒนาทักษะดิจิทัล":
-              navigate("/head");
-              break;
-            case "พนักงาน":
-              navigate("/user");
-              break;
-            default:
-              navigate("/user");
-          }
+          handleRoleRedirect(userRole, navigate);
         })
         .catch(() => {
           // If token is invalid, remove it
@@ -80,13 +83,10 @@ export default function Home() {
 
   const dataSubmit: SubmitHandler<Input> = async (data) => {
     try {
-      console.log("Sending login request...");
       const response = await axiosInstance.post("/auth/login", {
         email: data.email,
         password: data.password,
       });
-
-      console.log("Login response:", response.data);
 
       // Access the nested access_token
       const token = response.data.access_token?.access_token;
@@ -97,59 +97,15 @@ export default function Home() {
         // Fetch user data using the token
         const userResponse = await axiosInstance.get("/user/profile");
 
-        console.log("User data:", userResponse.data);
-
         // Get user role from response
         const userRole = userResponse.data.user_role;
-        console.log("User role:", userRole);
 
         // Redirect based on role
-        switch (userRole) {
-          case "admin":
-            navigate("/admin");
-            break;
-          case "คณบดี":
-            navigate("/dean");
-            break;
-          case "คณบดีฝ่ายบริหารทั่วไป":
-            navigate("/dean/generaladministration");
-            break;
-          case "คณบดีฝ่ายแผนงาน":
-            navigate("/dean/plan");
-            break;
-          case "คณบดีฝ่ายพัฒนาทักษะดิจิทัล":
-            navigate("/dean/developdigitalskills");
-            break;
-          case "คณบดีฝ่ายวิชาการ":
-            navigate("/dean/academic");
-            break;
-          case "หัวหน้าสำนักงาน":
-            navigate("/head");
-            break;
-          case "หัวหน้างานฝ่ายบริหารทั่วไป":
-            navigate("/head");
-            break;
-          case "หัวหน้างานฝ่ายวิชาการ":
-            navigate("/head");
-            break;
-          case "หัวหน้างานฝ่ายแผนงาน":
-            navigate("/head");
-            break;
-          case "หัวหน้างานฝ่ายพัฒนาทักษะดิจิทัล":
-            navigate("/head");
-            break;
-          case "พนักงาน":
-            navigate("/user");
-            break;
-          default:
-            navigate("/user");
-        }
+        handleRoleRedirect(userRole, navigate);
       } else {
-        console.error("No access token in response");
         message.error("Login failed: No access token received");
       }
     } catch (error: any) {
-      console.error("Login error:", error.response?.data || error.message);
       if (error.response?.data?.message) {
         message.error(error.response.data.message);
       } else {

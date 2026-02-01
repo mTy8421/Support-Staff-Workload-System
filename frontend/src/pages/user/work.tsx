@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Card,
@@ -233,26 +233,28 @@ const UserWork: React.FC = () => {
     },
   ];
 
-  const filteredWorkloads = workloads.filter((workload) => {
-    const matchesSearch =
-      (workload.options.title?.toLowerCase() || "").includes(
-        searchText.toLowerCase(),
-      ) ||
-      (workload.department?.toLowerCase() || "").includes(
-        searchText.toLowerCase(),
-      ) ||
-      (workload.assignee?.toLowerCase() || "").includes(
-        searchText.toLowerCase(),
-      );
+  const filteredWorkloads = useMemo(() => {
+    return workloads.filter((workload) => {
+      const matchesSearch =
+        (workload.options.title?.toLowerCase() || "").includes(
+          searchText.toLowerCase(),
+        ) ||
+        (workload.department?.toLowerCase() || "").includes(
+          searchText.toLowerCase(),
+        ) ||
+        (workload.assignee?.toLowerCase() || "").includes(
+          searchText.toLowerCase(),
+        );
 
-    const matchesStatus =
-      statusFilter.length === 0 || statusFilter.includes(workload.status);
-    const matchesPriority =
-      priorityFilter.length === 0 ||
-      priorityFilter.includes(workload.options.priority);
+      const matchesStatus =
+        statusFilter.length === 0 || statusFilter.includes(workload.status);
+      const matchesPriority =
+        priorityFilter.length === 0 ||
+        priorityFilter.includes(workload.options.priority);
 
-    return matchesSearch && matchesStatus && matchesPriority;
-  });
+      return matchesSearch && matchesStatus && matchesPriority;
+    });
+  }, [workloads, searchText, statusFilter, priorityFilter]);
 
   // if (loading) {
   //   return (

@@ -159,8 +159,7 @@ const EditUserWorkLoad: React.FC = () => {
       const response = await axiosInstance.patch(`/work/${id}`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-      console.log("Response:", response.data);
-
+      
       message.success("แก้ไขภาระงานสำเร็จ");
       navigate("/user/work");
     } catch (error: any) {
