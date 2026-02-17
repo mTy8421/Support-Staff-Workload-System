@@ -24,12 +24,16 @@ const DrillDownView: React.FC<DrillDownViewProps> = ({
       <style>{`
         @keyframes slideIn { from { transform: translateX(20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
         .animate-slide-in { animation: slideIn 0.3s ease-out; }
+        @media (prefers-reduced-motion: reduce) {
+          .animate-slide-in { animation: none; }
+        }
       `}</style>
       <button
         onClick={onBack}
-        className="flex items-center text-slate-500 hover:text-slate-800 mb-6 transition-colors font-medium cursor-pointer bg-transparent border-none"
+        aria-label="กลับไปหน้าภาพรวม"
+        className="flex items-center text-slate-600 hover:text-slate-900 mb-6 transition-colors duration-200 font-medium cursor-pointer bg-transparent border-none min-h-[44px] px-3 py-2 rounded-lg hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
       >
-        <ArrowLeft size={20} className="mr-2" /> กลับไปหน้าภาพรวม
+        <ArrowLeft size={20} className="mr-2" aria-hidden="true" /> กลับไปหน้าภาพรวม
       </button>
       <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
         <div className="p-6 border-b border-slate-100 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-slate-50/50">
@@ -44,16 +48,20 @@ const DrillDownView: React.FC<DrillDownViewProps> = ({
           </div>
           <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
             <div className="relative w-full sm:w-auto">
+              <label htmlFor="search-employee" className="sr-only">ค้นหาชื่อพนักงาน</label>
               <input
+                id="search-employee"
                 type="text"
                 placeholder="ค้นหาชื่อพนักงาน..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-9 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-blue-500 w-full sm:w-64 transition-colors"
+                className="pl-9 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full sm:w-64 transition-colors duration-200"
+                aria-label="ค้นหาชื่อพนักงาน"
               />
               <SearchIcon
                 size={16}
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"
+                aria-hidden="true"
               />
             </div>
             <div className="px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 whitespace-nowrap">

@@ -136,7 +136,7 @@ const Headers: React.FC = () => {
       <div style={{ display: "flex", alignItems: "center" }}>
         <img
           src="/up-logo.jpg"
-          alt="Logo"
+          alt="โลโก้มหาวิทยาลัยพะเยา - Support Staff Workload System"
           style={{
             height: "45px",
             width: "45px",
@@ -179,16 +179,25 @@ const Headers: React.FC = () => {
               onMouseLeave={() => setIsMailHovered(false)}
               style={{ display: "inline-block" }}
             >
-              <Avatar
+              <button
                 onClick={showModal}
+                aria-label={`ภาระงานที่ไม่อนุมัติ ${notCompletedWorkloads.length} รายการ`}
+                className="border-0 bg-transparent p-0 cursor-pointer"
                 style={{
-                  backgroundColor: isMailHovered ? "#f0f0f0" : "#fff",
-                  color: "#000",
-                  cursor: "pointer",
-                  transition: "background-color 0.3s ease",
+                  minHeight: "44px",
+                  minWidth: "44px",
                 }}
-                icon={<MailOutlined />}
-              />
+              >
+                <Avatar
+                  style={{
+                    backgroundColor: isMailHovered ? "#f0f0f0" : "#fff",
+                    color: "#000",
+                    cursor: "pointer",
+                    transition: "background-color 0.2s ease",
+                  }}
+                  icon={<MailOutlined aria-hidden="true" />}
+                />
+              </button>
             </div>
           </Badge>
         </Space>

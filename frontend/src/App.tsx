@@ -51,8 +51,14 @@ const DevelopDigitalSkills = lazy(() => import("./pages/dean/developdigitalskill
 
 // Loading Component
 const Loading = () => (
-  <div className="flex justify-center items-center h-screen">
-    <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"></div>
+  <div className="flex justify-center items-center h-screen" role="status" aria-label="กำลังโหลด">
+    <style>{`
+      @media (prefers-reduced-motion: reduce) {
+        .animate-spin { animation: none; border: 4px solid #1f2937; }
+      }
+    `}</style>
+    <div className="animate-spin rounded-full h-32 w-32 border-b-4 border-gray-900" aria-hidden="true"></div>
+    <span className="sr-only">กำลังโหลดข้อมูล...</span>
   </div>
 );
 

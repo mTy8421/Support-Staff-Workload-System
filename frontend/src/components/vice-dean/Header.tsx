@@ -39,7 +39,7 @@ const ViceDeanHeader: React.FC<ViceDeanHeaderProps> = ({ role }) => {
       <div style={{ display: "flex", alignItems: "center" }}>
         <img
           src="/up-logo.jpg"
-          alt="Logo"
+          alt="โลโก้มหาวิทยาลัยพะเยา - Support Staff Workload System"
           style={{
             height: "40px",
             marginRight: theme.spacing.md,

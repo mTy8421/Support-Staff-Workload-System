@@ -57,7 +57,7 @@ const DeanHeader: React.FC = () => {
       <div style={{ display: "flex", alignItems: "center" }}>
         <img
           src="/up-logo.jpg"
-          alt="Logo"
+          alt="โลโก้มหาวิทยาลัยพะเยา - Support Staff Workload System"
           style={{
             height: "45px",
             width: "45px",

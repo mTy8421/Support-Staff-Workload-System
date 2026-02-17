@@ -242,33 +242,39 @@ export default function ChartDean() {
                       แดชบอร์ดผู้บริหารและการวางแผนทรัพยากรบุคคล
                     </p>
                   </header>
-                  <div className="flex bg-white rounded-lg shadow-sm p-1 border border-slate-200">
+                  <div className="flex bg-white rounded-lg shadow-sm p-1 border border-slate-200" role="group" aria-label="เลือกช่วงเวลา">
                     <button
                       onClick={() => setDateFilter("thisMonth")}
-                      className={`px-4 py-1.5 text-sm font-medium rounded-md border-none cursor-pointer transition-colors ${
+                      aria-label="แสดงข้อมูลเดือนนี้"
+                      aria-pressed={dateFilter === "thisMonth"}
+                      className={`px-4 py-2 min-h-[44px] text-sm font-medium rounded-md border-none cursor-pointer transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
                         dateFilter === "thisMonth"
                           ? "bg-blue-50 text-blue-700"
-                          : "text-slate-500 hover:text-slate-700 bg-transparent"
+                          : "text-slate-600 hover:text-slate-900 hover:bg-slate-50 bg-transparent"
                       }`}
                     >
                       เดือนนี้
                     </button>
                     <button
                       onClick={() => setDateFilter("lastMonth")}
-                      className={`px-4 py-1.5 text-sm font-medium rounded-md border-none cursor-pointer transition-colors ${
+                      aria-label="แสดงข้อมูลเดือนที่แล้ว"
+                      aria-pressed={dateFilter === "lastMonth"}
+                      className={`px-4 py-2 min-h-[44px] text-sm font-medium rounded-md border-none cursor-pointer transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
                         dateFilter === "lastMonth"
                           ? "bg-blue-50 text-blue-700"
-                          : "text-slate-500 hover:text-slate-700 bg-transparent"
+                          : "text-slate-600 hover:text-slate-900 hover:bg-slate-50 bg-transparent"
                       }`}
                     >
                       เดือนที่แล้ว
                     </button>
                     <button
                       onClick={() => setDateFilter("thisYear")}
-                      className={`px-4 py-1.5 text-sm font-medium rounded-md border-none cursor-pointer transition-colors ${
+                      aria-label="แสดงข้อมูลปีนี้"
+                      aria-pressed={dateFilter === "thisYear"}
+                      className={`px-4 py-2 min-h-[44px] text-sm font-medium rounded-md border-none cursor-pointer transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
                         dateFilter === "thisYear"
                           ? "bg-blue-50 text-blue-700"
-                          : "text-slate-500 hover:text-slate-700 bg-transparent"
+                          : "text-slate-600 hover:text-slate-900 hover:bg-slate-50 bg-transparent"
                       }`}
                     >
                       ปีนี้

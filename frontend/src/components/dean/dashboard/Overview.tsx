@@ -29,6 +29,9 @@ const Overview: React.FC<OverviewProps> = ({
       <style>{`
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .animate-fade-in { animation: fadeIn 0.5s ease-out; }
+        @media (prefers-reduced-motion: reduce) {
+          .animate-fade-in { animation: none; }
+        }
       `}</style>
       {/* KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

@@ -57,7 +57,7 @@ const DeanHeader: React.FC = () => {
       <div style={{ display: "flex", alignItems: "center" }}>
         <img
           src="/up-logo.jpg"
-          alt="Logo"
+          alt="โลโก้มหาวิทยาลัยพะเยา - Support Staff Workload System"
           style={{
             height: "45px",
             width: "45px",
@@ -92,13 +92,15 @@ const DeanHeader: React.FC = () => {
         </span>
         <Button
           type="text"
-          icon={<LogoutOutlined style={{ color: "#000" }} />}
+          icon={<LogoutOutlined style={{ color: "#000" }} aria-hidden="true" />}
           onClick={logout}
+          aria-label="ออกจากระบบ"
           style={{
             fontSize: theme.fontSize.md,
             // color: theme.white,
             color: "#000",
-            height: "40px",
+            height: "44px",
+            minWidth: "44px",
             padding: `0 ${theme.spacing.md}`,
             display: "flex",
             alignItems: "center",
